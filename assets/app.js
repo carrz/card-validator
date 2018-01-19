@@ -8,3 +8,5 @@ form.addEventListener('submit', (e) => {
     console.log('datos inválidos');
   }
 });
+
+// Algoritmo
