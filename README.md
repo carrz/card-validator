@@ -15,7 +15,7 @@ Al hacer las validaciones, la librería añade la clase `.error` a los `<input>`
 
 Desarrollar una libreria Javascript que permita verificar la validez de una tarjeta
 
-##Requerimientos Técnicos
+## Requerimientos Técnicos
 
 El proyecto está realizado con las siguientes dependencias NPM:
 
@@ -23,7 +23,7 @@ El proyecto está realizado con las siguientes dependencias NPM:
 	- Babel ~v.6.26.0
 	- esLint ~v.4.15.0
 
-##Levantamiento ambiente de desarrollo
+## Levantamiento ambiente de desarrollo
 
 
 + Clonar repositorio.
