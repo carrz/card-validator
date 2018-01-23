@@ -1,5 +1,5 @@
 const form = document.querySelector('form');
-
+/*
 form.addEventListener('submit', (event) => {
   e.preventDefault();
   if (validateCardDetails(form)) {
@@ -7,8 +7,7 @@ form.addEventListener('submit', (event) => {
   } else {
     console.log('datos inválidos');
   }
-});
-
+});*/
 
 form.cn.addEventListener('keypress', function(event) {
   if (!onlyNumber(event)) {
@@ -33,3 +32,4 @@ function onlyNumber(event) {
   var key = event.charCode;
   return key >= 48 && key <= 57;
 }
+// Algoritmo
