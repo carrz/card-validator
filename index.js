@@ -8,28 +8,64 @@ form.addEventListener('submit', (event) => {
     console.log('datos inválidos');
   }
 });*/
+const cn = document.getElementById('cn');
+const cnMsg = document.createElement('span');
+const msgTxt1 = document.createTextNode('Verifique el número de caracteres ingresados');
+cnMsg.appendChild(msgTxt1);
+cn.appendChild(cnMsg);
+cnMsg.style.display = 'none';
 
-form.cn.addEventListener('keypress', function(event) {
-  if (!onlyNumber(event)) {
+const cvv = document.getElementById('cvv');
+const cvvMsg = document.createElement('span');
+const msgTxt2 = document.createTextNode('Verifique el número de caracteres ingresados');
+cvvMsg.appendChild(msgTxt2);
+cvv.appendChild(cvvMsg);
+cvvMsg.style.display = 'none';
+
+form.cnIn.addEventListener('keypress', (event) => {
+  if (!onlyNumber(event.keyCode)) {
     event.preventDefault();
+  }
+});
+
+form.cnIn.addEventListener('keyup', () => {
+  const cnIn = document.getElementById('cnIn');
+  cnIn.setAttribute('maxlength', '18');
+  let cnInVal = cnIn.value;
+  if (cnInVal.length >= 15) {
+    cnMsg.style.display = 'none';
+    /* cnIn.classList.add('success');
+    cnIn.classList.remove('error'); */
   } else {
-    var cnVal = form.cn.value();
-    var cn = form.cn;
-    if (cn >= 15 && cn <= 18) {
-
-    } else {
-
-    }
+    cnMsg.style.display = 'initial';
+    /* cnIn.classList.add('error');
+    cnIn.classList.remove('success'); */
   }
 });
-form.cvv.addEventListener('keypress', function(event) {
-  if (!onlyNumber(event)) {
+
+form.cvvIn.addEventListener('keypress', (event) => {
+  if (!onlyNumber(event.keyCode)) {
     event.preventDefault();
   }
 });
-// Solo permite introducir numeros.
-function onlyNumber(event) {
-  var key = event.charCode;
-  return key >= 48 && key <= 57;
+form.cvvIn.addEventListener('keyup', () => {
+  const cvvIn = document.getElementById('cvvIn');
+  cvvIn.setAttribute('maxlength', '3');
+  let cvvInVal = cvvIn.value;
+  if (cvvInVal.length === 3) {
+    cvvMsg.style.display = 'none';
+    // cvvIn.classList.add('success');
+  } else {
+    cvvMsg.style.display = 'initial';
+    // cvvIn.classList.add('error');
+  }
+});
+// Sólo permite introducir números.
+function onlyNumber(code) {
+  let isNumber = false;
+  if (code >= 48 && code <= 57) {
+    isNumber = true;
+  }
+  return isNumber;
 }
 // Algoritmo
