@@ -34,6 +34,8 @@ form.cnIn.addEventListener('keyup', () => {
   let cnInVal = cnIn.value;
   if (cnInVal.length >= 15) {
     cnMsg.style.display = 'none';
+    let cnReverse = cnInVal.split('').reverse();
+
     /* cnIn.classList.add('success');
     cnIn.classList.remove('error'); */
   } else {
@@ -68,4 +70,28 @@ function onlyNumber(code) {
   }
   return isNumber;
 }
-// Algoritmo
+// Algoritmo luhn
+for (var index = 1; index < arrInv.length; index += 2) {
+  if (arrInv[index] * 2 >= 10) {
+    var sum = 0;
+    var aux = arrInv[index] * 2;
+    aux = aux.toString();
+    for (var indexAux = 0; indexAux < aux.length; indexAux++) {
+      sum += parseInt(aux[indexAux]);
+    }
+    arrInv[index] = sum;
+  } else {
+    arrInv[index] *= 2;
+  }
+}
+
+var sumDigit = 0;
+for (var index = 0; i < arrInv.length; index++) {
+  sumDigit += arrInv[index];
+}
+var tarjetaValida = false;
+if (sumDigit % 10 === 0) {
+  alert('Tarjeta Válida');
+} else {
+  alert('Tarjeta Inválida');
+}
