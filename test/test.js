@@ -20,3 +20,13 @@ describe('onlyNumber()', () => {
     assert.equal(app.onlyNumber(62), false);
   });
 });
+
+// Test de prueba si es letra y/o espacio
+describe('onlyText()', () => {
+  it('Debería devolver true si recibe letras y espacios', () => {
+    assert.equal(app.onlyText(113), true);
+  });
+  it('Debería devolver false si no recibe cualquier otro caracter', () => {
+    assert.equal(app.onlyText(36), false);
+  });
+});
