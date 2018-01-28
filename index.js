@@ -68,11 +68,12 @@ function onlyNumber(code) {
   }
   return isNumber;
 }
+
 // Solo permite introducir letras.
 function onlyText(letters) {
   let isLetter = true;
-  let letter = String.fromCharCode(letters).toString();
-  const letterDemo = ' abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
+  let letter = (String.fromCharCode(letters).toString()).toUpperCase();
+  const letterDemo = ' ABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
 
   if (letterDemo.indexOf(letter) === -1) {
     isLetter = false;
@@ -85,37 +86,45 @@ form.name.addEventListener('keypress', (event) => {
     event.preventDefault();
   }
 }); 
-/* form.name.addEventListener('keyup', () => {
+form.name.addEventListener('keyup', () => {
   const name = document.getElementById('name');
-  let nameVal = name.value;
-  nameVal = nameVal.toUpperCase();
-}); */ // No funciona todavía
+  name.setAttribute('style', 'text-transform:uppercase');
+  if (name.value.length !== 0) {
+    name.classList.add('success');
+    name.classList.remove('error');
+  } else {
+    name.classList.add('error');
+    name.classList.remove('success');
+  }
+});
 
-
+// Solo permite introducir numeros y el simbolo /.
 function theDate(date) {
   isDate = String.fromCharCode(date).toString();
   daysDemo = '/0123456789';
 
   if (daysDemo.indexOf(isDate) === -1) {
     return false;
+  } else {
+    return true;
   }
-  return isDate;
 }
+
 form.exp.addEventListener('keypress', (event) => {
   const exp = document.getElementById('exp');
-  if ((!theDate(event.keyCode)) || (exp.value.length === 5)) {
+  exp.setAttribute('maxlength', '5');
+  if (!theDate(event.keyCode)) {
     event.preventDefault();
   }
+  if (exp.value.length === 5) {
+    let date = exp.value.split('/');
+    if ((date[0] >= 1 && date[0] <= 12) && (date[1] >= 18 && date[1] <= 23)) {
+      exp.classList.add('success');
+      exp.classList.remove('error');
+    } else {
+      exp.classList.add('error');
+      exp.classList.remove('success');
+    }
+  } 
 }); 
 
-// Formula validadora de fecha formato MM/YY
-/* function validDate(exp.value) {
-  const exp = document.getElementById('exp');
-  var result = false;
-  var date = exp.value.split('/');
-
-  if ((date[0] >= 1 && date[0] <= 12) && (date[1] >= 18 && date[1] <= 23)) {
-    result = true;
-  }
-  return result;
-} */

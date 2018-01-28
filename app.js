@@ -15,5 +15,15 @@ module.exports = {
       isLetter = false;
     }
     return isLetter;
+  },
+  theDate(date) {
+    isDate = String.fromCharCode(date).toString();
+    daysDemo = '/0123456789';
+  
+    if (daysDemo.indexOf(isDate) === -1) {
+      return false;
+    } else {
+      return true;
+    }
   }
 };
