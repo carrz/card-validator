@@ -1,42 +1,36 @@
-const app = require('../app');
+const tdc = require('../src/tdc');
 const assert = require('chai').assert;
 
 // Test de prueba validar tarjeta
-/* describe('validCard()', () => {
+describe('luhn()', () => {
   it('Debería devolver true si la tarjeta es válida', () => {
-    assert.equal(app.validCard(), true);
+    assert.equal(tdc.luhn(4611081154056470), true);
+    assert.equal(tdc.luhn(4611081154056472), false);
   });
-  it('debería devolver false si la tarjeta es inválida', () => {
-    assert.equal(app.validCard(), false);
-  });
-}); */
+});
 
 // Test de prueba si es tarjeta
 describe('onlyNumber()', () => {
   it('Debería devolver true si recibe un numero', () => {
-    assert.equal(app.onlyNumber(50), true);
-  });
-  it('Debería devolver false si no recibe un numero', () => {
-    assert.equal(app.onlyNumber(62), false);
+    assert.equal(tdc.onlyNumber(50), true);
+    assert.equal(tdc.onlyNumber(62), false);
   });
 });
 
 // Test de prueba si es letra y/o espacio
 describe('onlyText()', () => {
   it('Debería devolver true si recibe letras y espacios', () => {
-    assert.equal(app.onlyText(113), true);
-  });
-  it('Debería devolver false si no recibe cualquier otro caracter', () => {
-    assert.equal(app.onlyText(36), false);
+    assert.equal(tdc.onlyText(113), true);
+    assert.equal(tdc.onlyText(36), false);
   });
 });
 
 // Test de prueba si es número o '/'
 describe('theDate()', () => {
   it('Debería devolver true si recibe números y / ', () => {
-    assert.equal(app.theDate(47), true);
+    assert.equal(tdc.theDate(47), true);
   });
   it('Debería devolver false si no recibe cualquier otro caracter', () => {
-    assert.equal(app.theDate(113), false);
+    assert.equal(tdc.theDate(113), false);
   });
 });
