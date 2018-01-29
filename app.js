@@ -5,5 +5,15 @@ module.exports = {
       isNumber = true;
     }
     return isNumber;
+  },
+  onlyText(letters) {
+    let isLetter = true;
+    let letter = String.fromCharCode(letters).toString();
+    const letterDemo = ' abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
+  
+    if (letterDemo.indexOf(letter) === -1) {
+      isLetter = false;
+    }
+    return isLetter;
   }
-}
+};

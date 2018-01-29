@@ -70,6 +70,7 @@ function onlyNumber(code) {
   }
   return isNumber;
 }
+<<<<<<< HEAD
 // Algoritmo luhn
 for (var index = 1; index < arrInv.length; index += 2) {
   if (arrInv[index] * 2 >= 10) {
@@ -95,3 +96,56 @@ if (sumDigit % 10 === 0) {
 } else {
   alert('Tarjeta Inválida');
 }
+=======
+// Solo permite introducir letras.
+function onlyText(letters) {
+  let isLetter = true;
+  let letter = String.fromCharCode(letters).toString();
+  const letterDemo = ' abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
+
+  if (letterDemo.indexOf(letter) === -1) {
+    isLetter = false;
+  }
+  return isLetter;
+}
+
+form.name.addEventListener('keypress', (event) => {
+  if (!onlyText(event.keyCode)) {
+    event.preventDefault();
+  }
+}); 
+/* form.name.addEventListener('keyup', () => {
+  const name = document.getElementById('name');
+  let nameVal = name.value;
+  nameVal = nameVal.toUpperCase();
+}); */ // No funciona todavía
+
+
+function theDate(date) {
+  isDate = String.fromCharCode(date).toString();
+  daysDemo = '/0123456789';
+
+  if (daysDemo.indexOf(isDate) === -1) {
+    return false;
+  }
+  return isDate;
+}
+form.exp.addEventListener('keypress', (event) => {
+  const exp = document.getElementById('exp');
+  if ((!theDate(event.keyCode)) || (exp.value.length === 5)) {
+    event.preventDefault();
+  }
+}); 
+
+// Formula validadora de fecha formato MM/YY
+/* function validDate(exp.value) {
+  const exp = document.getElementById('exp');
+  var result = false;
+  var date = exp.value.split('/');
+
+  if ((date[0] >= 1 && date[0] <= 12) && (date[1] >= 18 && date[1] <= 23)) {
+    result = true;
+  }
+  return result;
+} */
+>>>>>>> upstream/BianCarla
