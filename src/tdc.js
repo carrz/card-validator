@@ -1,92 +1,96 @@
-// const form = document.querySelector('form');
 const Validator = {};
+Validator.validCreditCard = function(cnIn, exp, cvvIn, nameIn, btnValid) {
+    // Validaciones Numero de tarjeta
+    cnIn.addEventListener('keypress', (event) => {
+      if (!Validator.onlyNumber(event.keyCode)) {
+        event.preventDefault();
+      }
+    });
 
-Validator.validCreditCard = function(cnIn, exp, cvvIn, name, btnValid) {
-  // Validaciones Numero de tarjeta
-  cnIn.addEventListener('keypress', (event) => {
-    if (!Validator.onlyNumber(event.keyCode)) {
-      event.preventDefault();
-    }
-  });
+    var cnReverse = cnIn.addEventListener('keyup', () => {
+      cnIn.setAttribute('maxlength', '18');
+      let cnInVal = cnIn.value;
+      if (cnInVal.length >= 15) {
+        cnIn.classList.add('success');
+        cnIn.classList.remove('error');
+      } else {
+        cnIn.classList.add('error');
+        cnIn.classList.remove('success');
+      }
+    });
 
-  var cnReverse = form.cnIn.addEventListener('keyup', () => {
-    cnIn.setAttribute('maxlength', '18');
-    let cnInVal = cnIn.value;
-    if (cnInVal.length >= 15) {
-      cnIn.classList.add('success');
-      cnIn.classList.remove('error');
-    } else {
-      cnIn.classList.add('error');
-      cnIn.classList.remove('success');
-    }
-  });
+    // Validaciones Numero de verificación (cvv)
+    cvvIn.addEventListener('keypress', (event) => {
+      if (!Validator.onlyNumber(event.keyCode)) {
+        event.preventDefault();
+      }
+    });
+    cvvIn.addEventListener('keyup', () => {
+      const cvvIn = document.getElementById('cvvIn');
+      cvvIn.setAttribute('maxlength', '3');
+      let cvvInVal = cvvIn.value;
+      if (cvvInVal.length === 3) {
+        cvvIn.classList.add('success');
+        cvvIn.classList.remove('error');
+      } else {
+        cvvIn.classList.add('error');
+        cvvIn.classList.remove('success');
+      }
+    });
 
-  // Validaciones Numero de verificación (cvv)
-  cvvIn.addEventListener('keypress', (event) => {
-    if (!Validator.onlyNumber(event.keyCode)) {
-      event.preventDefault();
-    }
-  });
-  cvvIn.addEventListener('keyup', () => {
-    const cvvIn = document.getElementById('cvvIn');
-    cvvIn.setAttribute('maxlength', '3');
-    let cvvInVal = cvvIn.value;
-    if (cvvInVal.length === 3) {
-      cvvIn.classList.add('success');
-      cvvIn.classList.remove('error');
-    } else {
-      cvvIn.classList.add('error');
-      cvvIn.classList.remove('success');
-    }
-  });
+    nameIn.addEventListener('keypress', (event) => {
+      if (!Validator.onlyText(event.keyCode)) {
+        event.preventDefault();
+      }
+    });
 
-  // Sólo permite introducir números.
-  /* Validator.onlyNumber = function(code) {
-    let isNumber = false;
-    if (code >= 48 && code <= 57) {
-      isNumber = true;
-    }
-    return isNumber;
-  }; */
+    nameIn.addEventListener('keyup', () => {
+      const nameIn = document.getElementById('name');
+      nameIn.setAttribute('style', 'text-transform:uppercase');
+      if (nameIn.value.length !== 0) {
+        nameIn.classList.add('success');
+        nameIn.classList.remove('error');
+      } else {
+        nameIn.classList.add('error');
+        nameIn.classList.remove('success');
+      }
+    });
 
-  btnValid.addEventListener('click', () => {
-    let cnReverse = [...cnIn.value].reverse().map(Number);
-    Validator.luhn(cnReverse);
-  });
+    btnValid.addEventListener('click', () => {
+      let cnReverse = [...cnIn.value].reverse().map(Number);
+      Validator.luhn(cnReverse);
+    });
 
-  form.name.addEventListener('keypress', (event) => {
-    if (!Validator.onlyText(event.keyCode)) {
-      event.preventDefault();
-    }
-  });
-
-  function theDate(date) {
-    isDate = String.fromCharCode(date).toString();
-    daysDemo = '/0123456789';
-    if (daysDemo.indexOf(isDate) === -1) {
-      return false;
-    }
-    return isDate;
+    exp.addEventListener('keyup', (event) => {
+      const exp = document.getElementById('exp');
+      exp.setAttribute('maxlength', '5');
+      if (!Validator.theDate(event.keyCode)) {
+        event.preventDefault();
+      }
+      if (exp.value.length === 5) {
+        let date = exp.value.split('/');
+        if ((date[0] >= 1 && date[0] <= 12) && (date[1] >= 18 && date[1] <= 23)) {
+          exp.classList.add('success');
+          exp.classList.remove('error');
+        } else {
+          exp.classList.add('error');
+          exp.classList.remove('success');
+        }
+      }
+    });
   }
-  form.exp.addEventListener('keypress', (event) => {
-    const exp = document.getElementById('exp');
-    if ((!theDate(event.keyCode)) || (exp.value.length === 5)) {
-      event.preventDefault();
-    }
-  });
-};
-
+  // Solo permite introducir letras
 Validator.onlyText = function(letters) {
-  let isLetter = true;
-  let letter = String.fromCharCode(letters).toString();
-  const letterDemo = ' abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
+    let isLetter = true;
+    let letter = (String.fromCharCode(letters).toString()).toUpperCase();
+    const letterDemo = ' ABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
 
-  if (letterDemo.indexOf(letter) === -1) {
-    isLetter = false;
+    if (letterDemo.indexOf(letter) === -1) {
+      isLetter = false;
+    }
+    return isLetter;
   }
-  return isLetter;
-};
-
+  // Solo permite introducir numeros
 Validator.onlyNumber = function(code) {
   let isNumber = false;
   if (code >= 48 && code <= 57) {
@@ -94,7 +98,16 @@ Validator.onlyNumber = function(code) {
   }
   return isNumber;
 };
-
+// Solo permite introducir numeros y el simbolo /.
+Validator.theDate = function(date) {
+  isDate = String.fromCharCode(date).toString();
+  daysDemo = '/0123456789';
+  if (daysDemo.indexOf(isDate) === -1) {
+    return false;
+  } else {
+    return true;
+  }
+};
 // Algoritmo luhn
 Validator.luhn = function(cnReverse) {
   for (let index = 1; index < cnReverse.length; index += 2) {
@@ -120,6 +133,6 @@ Validator.luhn = function(cnReverse) {
     return false;
   }
 };
-Validator.validCreditCard(cnIn, exp, cvvIn, name, btnValid);
+// Validator.validCreditCard(cnIn, exp, cvvIn, nameIn, btnValid);
 
-// module.exports = Validator;
+module.exports = Validator;

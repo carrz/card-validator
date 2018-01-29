@@ -24,3 +24,13 @@ describe('onlyText()', () => {
     assert.equal(tdc.onlyText(36), false);
   });
 });
+
+// Test de prueba si es número o '/'
+describe('theDate()', () => {
+  it('Debería devolver true si recibe números y / ', () => {
+    assert.equal(tdc.theDate(47), true);
+  });
+  it('Debería devolver false si no recibe cualquier otro caracter', () => {
+    assert.equal(tdc.theDate(113), false);
+  });
+});
