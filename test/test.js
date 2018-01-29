@@ -4,8 +4,8 @@ const assert = require('chai').assert;
 // Test de prueba validar tarjeta
 describe('luhn()', () => {
   it('Debería devolver true si la tarjeta es válida', () => {
-    assert.equal(tdc.luhn(4611081154056470), true);
-    assert.equal(tdc.luhn(4611081154056472), false);
+    assert.equal(tdc.luhn([ 0, 7, 4, 6, 5, 0, 4, 5, 1, 1, 8, 0, 1, 1, 6, 4 ]), true);
+    assert.equal(tdc.luhn([ 2, 7, 4, 6, 5, 0, 4, 5, 1, 1, 8, 0, 1, 1, 6, 4 ]), false);
   });
 });
 
