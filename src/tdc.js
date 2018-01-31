@@ -1,4 +1,5 @@
 const Validator = {};
+
 Validator.validCreditCard = function(form, cnIn, exp, cvvIn, nameIn, btnValid) {
   // Validaciones Numero de tarjeta
   cnIn.addEventListener('keypress', (event) => {
@@ -137,10 +138,10 @@ Validator.luhn = function(cnReverse) {
   const sumReverse = cnReverse.reduce((previousValue, currentValue) => previousValue + currentValue);
   let validCard = false;
   if (sumReverse % 10 === 0) {
-    // alert('tarjeta valida');
+    //alert('Tarjeta Válida');
     return true;
   } else {
-    // alert('tarjeta invalida');
+    //alert('Tarjeta Inválida');
     return false;
   }
 };
