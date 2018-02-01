@@ -4,7 +4,8 @@
   "description": "Libreria para validar tarjetas de credito",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
