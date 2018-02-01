@@ -1,4 +1,4 @@
 #Ignorando carpeta node_modules
 node_modules/
-/.eslintrc
-/.babelrc
+.eslintrc
+.babelrc
