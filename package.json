@@ -1,0 +1,33 @@
+{
+  "name": "card-validator",
+  "version": "1.0.0",
+  "description": "Libreria para validar tarjetas de credito",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carrz/card-validator.git"
+  },
+  "keywords": [
+    "lib",
+    "card",
+    "validator"
+  ],
+  "author": "Bianca Yanez & Carla Zumarán",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carrz/card-validator/issues"
+  },
+  "homepage": "https://github.com/carrz/card-validator#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "mocha": "^5.0.0"
+  },
+  "dependencies": {
+    "chai": "^4.1.2"
+  }
+}
