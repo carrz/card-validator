@@ -1,2 +1,2 @@
-const Validator = require('../src/tdc');
+const Validator = require('../lib/tdc');
 module.exports = Validator;
