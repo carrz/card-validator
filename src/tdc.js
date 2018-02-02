@@ -57,7 +57,6 @@ Validator.validCreditCard = function(cnIn, exp, cvvIn, nameIn, btnValid) {
 
   btnValid.addEventListener('click', (event) => {
     if (document.querySelector('.error') || !document.querySelector('.success')) {
-      classError = true;
       event.preventDefault();
     } else {
       let cnReverse = [...cnIn.value].reverse().map(Number);
@@ -65,7 +64,6 @@ Validator.validCreditCard = function(cnIn, exp, cvvIn, nameIn, btnValid) {
     }
   });
   exp.addEventListener('keyup', (event) => {
-    const exp = document.getElementById('exp');
     exp.setAttribute('maxlength', '5');
     if (!Validator.theDate(event.keyCode)) {
       event.preventDefault();
