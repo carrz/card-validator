@@ -134,4 +134,4 @@ Validator.luhn = function(cnReverse) {
     return false;
   }
 };
-module.exports = Validator;
+// module.exports = Validator;
